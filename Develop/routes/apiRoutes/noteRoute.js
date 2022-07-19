@@ -13,8 +13,7 @@ router.post('/api/notes', (req, res) => {
         title: req.body.title,
         text: req.body.text
     }
-
     createNote(note);
 });
 
-modules.export = router;
+module.exports = router;
