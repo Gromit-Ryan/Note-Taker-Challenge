@@ -1,13 +1,24 @@
 const fs = require('fs');
 const path = require('path');
 
-const createNote = (body, notesArray) => {
-    const note = body;
-    notesArray.push(note);
-    fs.writeFileSync(
-        path.join(__dirname, '../db/db.json')),
-        JSON.stringify({ notesArray }, null, 2);
-        return note;
+const viewNotes = () => {
+    fs.readFile('../db/db.json', (err, data) => {
+        if(err) throw err;
+        res.send(data);
+    })
 }
 
-module.exports = { createNote };
+const createNote = (newNote) => {
+    fs.readFile('../db/db.json', (err, data) => {
+        let newData = JSON.parse(data);
+
+        newData.push(newNote);
+
+        fs.writeFile('../db/db.json', JSON.stringify(newData), (err) => {
+            if(err) throw err;
+            res.send('New note has been added.');
+        })
+    })
+}
+
+module.exports = { viewNotes, createNote };
