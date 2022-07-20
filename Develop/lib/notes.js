@@ -13,7 +13,16 @@ const createNote = (newNote) => {
     })
 }
 
+const deleteNote = (id) => {
+    fs.readFile('./db/db.json', (err, data) => {
+        let noteArray = JSON.parse(data);
 
+        console.log(noteArray);
+        const result = noteArray.filter((note) => note.id !== id);
 
-
-module.exports = { createNote };
+        fs.writeFile('./db/db.json', JSON.stringify(result), (err, data) => {
+            if(err) throw err;
+        })
+    })
+}
+module.exports = { createNote, deleteNote };
