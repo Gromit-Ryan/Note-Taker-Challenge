@@ -9,7 +9,7 @@ const htmlRoutes = require('./routes/htmlRoutes/index.js');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.statis(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(apiRoutes);
 app.use(htmlRoutes);
