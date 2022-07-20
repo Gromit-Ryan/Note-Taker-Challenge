@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const createNote = (newNote, noteArray) => {
+const createNote = (newNote) => {
     fs.readFile('./db/db.json', (err, data) => {
         let noteArray = JSON.parse(data);
 
@@ -12,6 +12,8 @@ const createNote = (newNote, noteArray) => {
         })
     })
 }
+
+
 
 
 module.exports = { createNote };
